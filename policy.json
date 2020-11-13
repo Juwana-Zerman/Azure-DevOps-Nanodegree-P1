@@ -1,0 +1,17 @@
+{
+    "if": {
+      "allOf": [
+        {
+          "field": "tags",
+          "exists": "false"
+        },
+        {
+          "field": "tags",
+          "exists": "false"
+        }
+      ]
+    },
+    "then": {
+      "effect": "deny"
+    }
+}
