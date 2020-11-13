@@ -23,3 +23,9 @@ For this project, you will write a Packer template and a Terraform template to d
 
 * Assign policy with the following command:
     * az policy assignment create --policy tagging-policy
+
+* Create a Packer template
+    * Add content to the builders section of the template.
+
+* Create a Terraform template:
+    
