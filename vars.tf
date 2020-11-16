@@ -23,3 +23,8 @@ variable "packer_resource_group" {
     default     = "test"
 }
 
+variable "vm_count" {
+  description = "Number of VMs to create"
+  type        = number
+  default     = 2
+}
