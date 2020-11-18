@@ -17,7 +17,7 @@
            "managed_image_resource_group_name": "test",
            "managed_image_name": "project1PackerImage",
            "location": "East US",
-           "vm_size": "Standard_A2",
+           "vm_size": "Standard_B1s",
            "azure_tags": {
                 "udacity": "project1"
            }

@@ -8,23 +8,17 @@ variable "location" {
   default     = "East US"
 }
 
-variable "resource_group_name" {
-    description = "The name of the resource group where the resources will be created"
-    default     = "test"
-}
-
-variable "packer_image_name" {
+variable "image" {
     description = "The name of the Packer image used"
     default     = "project1PackerImage"
 }
-
-variable "packer_resource_group" {
-    description = "Resource group used for the Packer image"
-    default     = "test"
-}
-
 variable "vm_count" {
   description = "Number of VMs to create"
   type        = number
   default     = 2
+}
+
+variable "address_space" {
+  description = "The address space to be used"
+  default     = ["10.2.0.0/16"]
 }
