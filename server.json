@@ -14,7 +14,7 @@
            "image_publisher": "Canonical",
            "image_offer": "UbuntuServer",
            "image_sku": "18.04-LTS",
-           "managed_image_resource_group_name": "test",
+           "managed_image_resource_group_name": "project1",
            "managed_image_name": "project1PackerImage",
            "location": "East US",
            "vm_size": "Standard_B1s",
