@@ -28,8 +28,7 @@ In the output one can acquire their subscription id from the id field or use the
 
 
 4. Create an azure service principal to use terraform with the following command: **```az ad sp create-for-rbac --query "{ client_id: appId, client_secret: password, tenant_id: tenant }"```**.
-<br>
-    With this output you will have the client_id and client_secret password to enter into your environment variables for packer. Enter these variables along with your subscription id into the **`server.json`** file.
+    With this output you will have the client_id and client_secret password to enter into your environment variables for packer. Enter these variables along with your subscription id into the **server.json** file.
 <br>
 
 5. Create a packer resource group with this command in the terminal (this is an L for location in the command): **`az group create -n packerResourceGroup -l eastus`**.
