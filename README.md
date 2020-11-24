@@ -20,19 +20,19 @@ For this project, a Packer template was created and a Terraform template was use
 In the output one can acquire their subscription id from the id field or use the command **```az account show --query "{ subscription_id }"```**. This id will be used in the packer build.
 <br>
 
-2. Create a security policy using the following command in the terminal:  **```az policy definition create --name tagging-policy --mode indexed --rules policy.json```**
+2. Create a security policy using the following command in the terminal:  **```az policy definition create --name tagging-policy --mode indexed --rules policy.json```**.
 <br>
 
-3. Assign policy with the following command in the terminal: **```az policy assignment create --policy tagging-policy```**
+3. Assign policy with the following command in the terminal: **```az policy assignment create --policy tagging-policy```**.
 <br>
 
 
-4. Create an azure service principal to use terraform with the following command: **```az ad sp create-for-rbac --query "{ client_id: appId, client_secret: password, tenant_id: tenant }"```**
+4. Create an azure service principal to use terraform with the following command: **```az ad sp create-for-rbac --query "{ client_id: appId, client_secret: password, tenant_id: tenant }"```**.
 <br>
-With this output you will have the client_id and client_secret password to enter into your environment variables for packer. Enter these variables along with your subscription id into the **`server.json`** file
+    With this output you will have the client_id and client_secret password to enter into your environment variables for packer. Enter these variables along with your subscription id into the **`server.json`** file.
 <br>
 
-5. Create a packer resource group with this command in the terminal (this is an L for location in the command): **`az group create -n packerResourceGroup -l eastus`**
+5. Create a packer resource group with this command in the terminal (this is an L for location in the command): **`az group create -n packerResourceGroup -l eastus`**.
 <br>
 
 6. Run the following command in the terminal to create and deploy your vm machine image to Azure using Packer. Set your client_id, client_secret, and subscription_id as environment variables in the **`server.json`** file if you haven't done so already.
