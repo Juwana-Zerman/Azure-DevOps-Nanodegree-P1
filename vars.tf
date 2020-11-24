@@ -3,6 +3,11 @@ variable "prefix" {
   default     = "udacity-project1"
 }
 
+variable "resource_group_name" {
+  description = "The name of the resource group in which the resources are created"
+  default     = "project1"
+}
+
 variable "location" {
   description = "The Azure Region in which all resources in this example should be created."
   default     = "East US"
@@ -17,8 +22,17 @@ variable "vm_count" {
   type        = number
   default     = 2
 }
+variable "admin_username" {
+  description = "The username to sign into your vms"
+  default     = "adminuser"
+}
 
-variable "address_space" {
-  description = "The address space to be used"
-  default     = ["10.2.0.0/16"]
+variable "admin_password" {
+  description = "The password to sign into your vms"
+  default     = "Passwd#1"
+}
+
+variable "application_port" {
+  description = "The port that will be exposed to the loadbalancer"
+  default     = 80
 }

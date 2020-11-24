@@ -2,46 +2,53 @@
 # Azure Infrastructure Operations Project: Deploying a scalable IaaS web server in Azure
 
 ### Introduction
-For this project, you will write a Packer template and a Terraform template to deploy a customizable, scalable web server in Azure.
+For this project, a Packer template was created and a Terraform template was used to deploy a customizable, scalable web server in Azure.
 
 ### Getting Started
-1. Clone this repository
+1. Fork and/or Clone this repository
 
-2. Create your infrastructure as code
-
-3. Update this README to reflect how someone would use your code.
+2. Make sure you have the following dependencies installed:
 
 ### Dependencies
-1. Create an [Azure Account](https://portal.azure.com)
-2. Install the [Azure command line interface](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
-3. Install [Packer](https://www.packer.io/downloads)
-4. Install [Terraform](https://www.terraform.io/downloads.html)
+* Create an [Azure Account](https://portal.azure.com)
+* Install the [Azure command line interface](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
+* Install [Packer](https://www.packer.io/downloads)
+* Install [Terraform](https://www.terraform.io/downloads.html)
 
 ### Instructions
-1. In the terminal do ```az login```. In the output one can acquire their subscription id from the id field or use the command ```az account show --query "{ subscription_id }"```.
+1. In the terminal run ```az login``` to login to your Azure account. Enter you credentials if needed. In the output one can acquire their subscription id from the id field or use the command ```az account show --query "{ subscription_id }"```. This id will be used in the packer build.
 
-* Create a security policy using the following command:
-    ``` az policy definition create --name tagging-policy --mode indexed --rules policy.json ```
+2. Create a security policy using the following command in the terminal:
+    Run ``` az policy definition create --name tagging-policy --mode indexed --rules policy.json ```
 
-* Assign policy with the following command:
-    ``` az policy assignment create --policy tagging-policy ```
-
-* Create a Packer template
-    * Add content to the builders section of the template.
-
-* Create a Terraform template
+3. Assign policy with the following command in the terminal:
+    Run ``` az policy assignment create --policy tagging-policy ```
 
 
+4. Create an azure service principal to use terraform with the following command:
+    Run ```az ad sp create-for-rbac --query "{ client_id: appId, client_secret: password, tenant_id: tenant }"```
+With this output you will have the client_id and client_secret password to enter into your environment variables for packer. Enter these variables along with your subscription id into the server.json file
 
+5. Create a packer resource group with this command in the terminal (this is L for location):
+        Run ```az group create -n packerResourceGroup -l eastus```
 
-* Create an azure service principal to use terraform with the following command:
-    ```az ad sp create-for-rbac --query "{ client_id: appId, client_secret: password, tenant_id: tenant }"```
-With this output you will have the client_id and client_secret password to enter into your environment variables for packer and terraform.
+6. Run the following command in the terminal to create and deploy your vm machine image to Azure using Packer. Set your client_id, client_secret, and subscription_id as environment variables in the server.json file if you haven't done so already.
+    Run ```packer build server.json```
 
-* Create a resource group with this command:
-        ```az group create -n project1 -1 eastus```
+7. Use terraform to provision resources:
+<br>
 
-2. Run the following command to create and deploy your vm machine image to Azure using Packer. Set your client_id, client_secret, and subscription_id as environment variables or copy them into a json file and run this command using your json file name. Here vars.json was used.
-    ```packer build -var-file vars.json server.json```
+    * You may customize your vm_count (default is set to 2), admin_username, and admin_password to log into your vms in the ```vars.tf``` file.
 
-3.
+    * Run ```terraform init```
+
+    * Run ```terraform plan -out solution.plan``` to see any changes that are required for your infrastructure and fix those.
+
+    * Run ```terraform apply "solution.plan"```
+
+    * When you are finished, Run ```terraform destroy``` to destroy the resources to keep charges from accruing.
+
+    * You will have to delete the packer resource group manually in the Azure portal or by running the following command: ```az group delete --name packerResourceGroup --yes```
+    * There may also be a networkwatcher RG that will need deleting manually as well. Use the Azure portal or run ```az group delete --name NetworkWatcherRG --yes```
+<br>
+##### You have now successfully deployed a scalable IaaS web server in Azure and destroyed it!

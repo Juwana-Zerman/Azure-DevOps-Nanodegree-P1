@@ -1,8 +1,8 @@
 {
 	"variables": {
-		"client_id": "{{env `ARM_CLIENT_ID`}}",
-		"client_secret": "{{env `ARM_CLIENT_SECRET`}}",
-		"subscription_id": "{{env `ARM_SUBSCRIPTION_ID`}}"
+		"client_id": "<insert your client_id here>",
+		"client_secret": "<insert your client_secret here>",
+		"subscription_id": "<insert your subscription_id here>"
 	},
 	"builders": [
         {
@@ -14,7 +14,7 @@
            "image_publisher": "Canonical",
            "image_offer": "UbuntuServer",
            "image_sku": "18.04-LTS",
-           "managed_image_resource_group_name": "project1",
+           "managed_image_resource_group_name": "packerResourceGroup",
            "managed_image_name": "project1PackerImage",
            "location": "East US",
            "vm_size": "Standard_B1s",
