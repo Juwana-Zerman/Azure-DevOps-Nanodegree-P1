@@ -2,3 +2,4 @@
 *.tfstate
 terraform.tfstate.backup
 vars.json
+desktop.ini
