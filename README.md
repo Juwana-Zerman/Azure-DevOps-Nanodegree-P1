@@ -48,23 +48,18 @@ With this output you will have the client_id and client_secret password to enter
 7. Use terraform to provision resources:
 <br>
 
-    - You may customize your vm_count (default is set to 2), admin_username, and admin_password to log into your vms in the ```vars.tf``` file.
-    <br>
+    * You may customize your vm_count (default is set to 2), admin_username, and admin_password to log into your vms in the ```vars.tf``` file.
 
-    - Run ```terraform init```
-    <br>
+    * Run ```terraform init```
 
-    - Run ```terraform plan -out solution.plan``` to see any changes that are required for your infrastructure and fix those.
-    <br>
+    * Run ```terraform plan -out solution.plan``` to see any changes that are required for your infrastructure and fix those.
 
-    - Run ```terraform apply "solution.plan"```
-    <br>
+    * Run ```terraform apply "solution.plan"```
 
-    - When you are finished, Run ```terraform destroy``` to destroy the resources to keep charges from accruing.
-    <br>
+    * When you are finished, Run ```terraform destroy``` to destroy the resources to keep charges from accruing.
 
-    - You will have to delete the packer resource group manually in the Azure portal or by running the following command: ```az group delete --name packerResourceGroup --yes```
+    * You will have to delete the packer resource group manually in the Azure portal or by running the following command: ```az group delete --name packerResourceGroup --yes```
     <br>
-    - There may also be a networkwatcher RG that will need deleting manually as well. Use the Azure portal or run ```az group delete --name NetworkWatcherRG --yes```
+    * There may also be a networkwatcher RG that will need deleting manually as well. Use the Azure portal or run ```az group delete --name NetworkWatcherRG --yes```
 <br>
 ### You have now successfully deployed a scalable IaaS web server in Azure and destroyed it!
