@@ -16,38 +16,39 @@ For this project, a Packer template was created and a Terraform template was use
 * Install [Terraform](https://www.terraform.io/downloads.html)
 
 ### Instructions
-1. In the terminal run ```az login``` to login to your Azure account. Enter you credentials if needed. In the output one can acquire their subscription id from the id field or use the command ```az account show --query "{ subscription_id }"```. This id will be used in the packer build.
+1. In the terminal run ```az login``` to login to your Azure account. Enter you credentials if needed.
+In the output one can acquire their subscription id from the id field or use the command ```az account show --query "{ subscription_id }"```. This id will be used in the packer build.
 <br>
 
 2. Create a security policy using the following command in the terminal:
-    Run ```az policy definition create --name tagging-policy --mode indexed --rules policy.json```
+    ```az policy definition create --name tagging-policy --mode indexed --rules policy.json```
 <br>
 
 3. Assign policy with the following command in the terminal:
-    Run ```az policy assignment create --policy tagging-policy```
+    ```az policy assignment create --policy tagging-policy```
 <br>
 
 
 4. Create an azure service principal to use terraform with the following command:
-    Run ```az ad sp create-for-rbac --query "{ client_id: appId, client_secret: password, tenant_id: tenant }"```
+    ```az ad sp create-for-rbac --query "{ client_id: appId, client_secret: password, tenant_id: tenant }"```
 <br>
 With this output you will have the client_id and client_secret password to enter into your environment variables for packer. Enter these variables along with your subscription id into the server.json file
 <br>
 
 5. Create a packer resource group with this command in the terminal (this is an L for location in the command):
 <br>
-    Run ```az group create -n packerResourceGroup -l eastus```
+    ```az group create -n packerResourceGroup -l eastus```
 <br>
 
 6. Run the following command in the terminal to create and deploy your vm machine image to Azure using Packer. Set your client_id, client_secret, and subscription_id as environment variables in the server.json file if you haven't done so already.
 
-    Run ```packer build server.json```
+    ```packer build server.json```
 <br>
 
 7. Use terraform to provision resources:
 <br>
 
-    * You may customize your vm_count (default is set to 2), admin_username, and admin_password to log into your vms in the ```vars.tf``` file.
+    - You may customize your vm_count (default is set to 2), admin_username, and admin_password to log into your vms in the ```vars.tf``` file.
     <br>
 
     - Run ```terraform init```
