@@ -20,11 +20,11 @@ For this project, a Packer template was created and a Terraform template was use
 <br>
 
 2. Create a security policy using the following command in the terminal:
-    Run ``` az policy definition create --name tagging-policy --mode indexed --rules policy.json ```
+    Run ```az policy definition create --name tagging-policy --mode indexed --rules policy.json```
 <br>
 
 3. Assign policy with the following command in the terminal:
-    Run ``` az policy assignment create --policy tagging-policy ```
+    Run ```az policy assignment create --policy tagging-policy```
 <br>
 
 
@@ -35,10 +35,12 @@ With this output you will have the client_id and client_secret password to enter
 <br>
 
 5. Create a packer resource group with this command in the terminal (this is an L for location in the command):
-        Run ```az group create -n packerResourceGroup -l eastus```
+<br>
+    Run ```az group create -n packerResourceGroup -l eastus```
 <br>
 
 6. Run the following command in the terminal to create and deploy your vm machine image to Azure using Packer. Set your client_id, client_secret, and subscription_id as environment variables in the server.json file if you haven't done so already.
+
     Run ```packer build server.json```
 <br>
 
@@ -48,20 +50,20 @@ With this output you will have the client_id and client_secret password to enter
     * You may customize your vm_count (default is set to 2), admin_username, and admin_password to log into your vms in the ```vars.tf``` file.
     <br>
 
-    * Run ```terraform init```
+    - Run ```terraform init```
     <br>
 
-    * Run ```terraform plan -out solution.plan``` to see any changes that are required for your infrastructure and fix those.
+    - Run ```terraform plan -out solution.plan``` to see any changes that are required for your infrastructure and fix those.
     <br>
 
-    * Run ```terraform apply "solution.plan"```
+    - Run ```terraform apply "solution.plan"```
     <br>
 
-    * When you are finished, Run ```terraform destroy``` to destroy the resources to keep charges from accruing.
+    - When you are finished, Run ```terraform destroy``` to destroy the resources to keep charges from accruing.
     <br>
 
-    * You will have to delete the packer resource group manually in the Azure portal or by running the following command: ```az group delete --name packerResourceGroup --yes```
+    - You will have to delete the packer resource group manually in the Azure portal or by running the following command: ```az group delete --name packerResourceGroup --yes```
     <br>
-    * There may also be a networkwatcher RG that will need deleting manually as well. Use the Azure portal or run ```az group delete --name NetworkWatcherRG --yes```
+    - There may also be a networkwatcher RG that will need deleting manually as well. Use the Azure portal or run ```az group delete --name NetworkWatcherRG --yes```
 <br>
-##### You have now successfully deployed a scalable IaaS web server in Azure and destroyed it!
+### You have now successfully deployed a scalable IaaS web server in Azure and destroyed it!
