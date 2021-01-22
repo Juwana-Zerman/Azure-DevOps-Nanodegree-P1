@@ -1,4 +1,3 @@
-# Azure-DevOps-Nanodegree-P1
 # Azure Infrastructure Operations Project: Deploying a scalable IaaS web server in Azure
 
 ### Introduction
